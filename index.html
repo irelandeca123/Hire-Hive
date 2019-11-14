@@ -1,0 +1,50 @@
+<html ng-app="myApp">
+	<head>
+	<base href="/" />
+	<title>Job Search </title>
+	<link href="content/css/styles.css" rel="stylesheet" type="text/css" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src= "app\app.js"> </script>
+	</head>
+	<div class= "container">
+  <body ng-controller="myController">
+		<div class="row">
+			<br />
+			<div class="well well-lg">
+			<div class="form-group ">
+				<div class="input-group center-block">
+					<br />
+					<input type="text" ng-minlength="2" placeholder="Search by keyword, technology or job title" value="" ng-model="query" class="form-control" ng-click="clearSearch()"/>
+					<br />
+					<br />
+					<button class="btn btn-secondary btn-sm" ng-click="search = 'Human Resources'">#HR</button>
+					<button class="btn btn-secondary btn-sm" ng-click="search = 'Finance'">#FINANCE</button>
+					<button class="btn btn-secondary btn-sm" ng-click="search = 'Sales'">#SALES</button>
+					<button class="btn btn-secondary btn-sm" ng-click="search = 'Technology'">#TECHNOLOGY</button>
+				</div>
+				</div>
+			</div>
+			<br />
+    <table class="table table-hover">
+			<thead>
+			<tr>
+		     <th scope="col"><a ng-click="sortType = 'title'; sortReverse = !sortReverse">Position</a></th>
+		     <th scope="col"><a ng-click="sortType = 'category'; sortReverse = !sortReverse">Category</a></th>
+				 <th scope="col"><a ng-click="sortType = 'location'; sortReverse = !sortReverse">Location</a></th>
+		   </tr>
+		 </thead>
+		  <tbody>
+				<input type="checkbox" ng-model="hideSalary"/> Show Description
+      <tr ng-repeat="data in myData.jobs | orderBy:sortType:sortReverse | filter : setGroup | filter : search " >
+        <td id="title"><a ng-href="{{data.hostedUrl}}" target="_blank"> {{data.title}}</a></td>
+        <td id="category">{{data.category}}</td>
+        <td>{{data.location}}</td>
+				<td id="description" ng-show="hideSalary">{{data.description.text}}</td>
+      </tr>
+			<tbody>
+    </table>
+	</div>
+  </body>
+</div>
+</html>

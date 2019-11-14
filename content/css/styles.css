@@ -1,0 +1,16 @@
+.form_style
+ {
+  width: 600px;
+  margin: 0 auto;
+ }
+ .well {
+     background: black !important;
+ }
+ .center-block {
+     display: table;  /* Instead of display:block */
+     margin-left: auto;
+     margin-right: auto;
+ }
+body {
+  padding: 10px
+}
